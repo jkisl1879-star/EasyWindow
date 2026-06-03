@@ -6,7 +6,7 @@
 
 class EasyWin;
 
-// Класс кнопки
+// Button class
 class Button {
 private:
     HWND hwnd;
@@ -33,6 +33,7 @@ public:
     int GetId() { return id; }
 };
 
+// Main window class
 class EasyWin {
 private:
     HWND hwnd;
@@ -42,13 +43,13 @@ private:
     bool isRunning;
     HDC currentDC;
 
-    // Для двойной буферизации
+    // Double buffering
     HDC memDC;
     HBITMAP memBitmap;
     int backBufferWidth;
     int backBufferHeight;
 
-    // Кнопки
+    // Buttons
     std::vector<Button*> buttons;
 
     static LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -57,26 +58,26 @@ public:
     EasyWin();
     virtual ~EasyWin();
 
-    // Основные функции
+    // Core functions
     void Create(const std::string& windowTitle, int w, int h);
     void Show();
     void Run();
     void Close();
     void Redraw();
 
-    // Функции рисования
+    // Drawing functions
     void Clear(int r, int g, int b);
     void DrawRect(int x, int y, int w, int h, int r, int g, int b);
     void DrawCircle(int x, int y, int radius, int r, int g, int b);
     void DrawText(const std::string& text, int x, int y, int r, int g, int b);
     void DrawLine(int x1, int y1, int x2, int y2, int r, int g, int b);
 
-    // Управление кнопками
+    // Button management
     Button* AddButton(const std::string& text, int x, int y, int w, int h);
     void RemoveButton(Button* button);
     void RemoveButton(int index);
 
-    // События (переопределяемые)
+    // Events (override these)
     virtual void OnDraw() {}
     virtual void OnKeyDown(int key) {}
     virtual void OnMouseMove(int x, int y) {}
@@ -84,12 +85,12 @@ public:
     virtual void OnResize(int width, int height) {}
     virtual void OnButtonClick(int buttonId) {}
 
-    // Вспомогательные функции
+    // Utility functions
     void Message(const std::string& text, const std::string& caption);
     int GetWidth() { return width; }
     int GetHeight() { return height; }
     HWND GetHWND() { return hwnd; }
 
-    // Дружественные классы
+    // Friend classes
     friend class Button;
 };
