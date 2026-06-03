@@ -7,7 +7,7 @@ A simple C++ library for creating windows with Windows.h. No extra dependencies,
 ```cpp
 #include "EasyWindow.h"
 
-class MyWindow : public EasyWindow {
+class MyWindow : public EasyWin {
     void OnDraw() override {
         Clear(30, 30, 50);
         DrawCircle(400, 300, 100, 255, 0, 0);
